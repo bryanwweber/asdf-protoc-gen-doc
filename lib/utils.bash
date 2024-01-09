@@ -42,6 +42,11 @@ download_release() {
 	filename="$2"
 	os=$(uname | tr '[:upper:]' '[:lower:]')
 	arch=$(uname -m)
+	if [ "$arch" = "x86_64" ]; then
+		arch="amd64"
+	elif [ "$arch" = "aarch64" ]; then
+		arch="arm64"
+	fi
 
 	url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${version}_${os}_${arch}.tar.gz"
 
@@ -60,7 +65,7 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
-		cp -r "$ASDF_DOWNLOAD_PATH"/protoc-gen-doc "$install_path"
+		cp -r "$ASDF_DOWNLOAD_PATH"/$TOOL_NAME "$install_path"
 
 		# TODO: Assert protoc-gen-doc executable exists.
 		local tool_cmd
