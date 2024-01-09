@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for protoc-gen-doc.
-GH_REPO="pseudomuto/protoc-gen-doc"
+GH_REPO="https://github.com/pseudomuto/protoc-gen-doc"
 TOOL_NAME="protoc-gen-doc"
 TOOL_TEST="protoc-gen-doc --help"
 
