@@ -60,7 +60,7 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
-		cp -r "$ASDF_DOWNLOAD_PATH"/protoc-gen-doc/protoc-gen-doc "$install_path"
+		cp -r "$ASDF_DOWNLOAD_PATH"/protoc-gen-doc "$install_path"
 
 		# TODO: Assert protoc-gen-doc executable exists.
 		local tool_cmd
