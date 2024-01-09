@@ -37,12 +37,13 @@ list_all_versions() {
 }
 
 download_release() {
-	local version filename url
+	local version filename url os arch
 	version="$1"
 	filename="$2"
+	os=$(uname | tr '[:upper:]' '[:lower:]')
+	arch=$(uname -m)
 
-	# TODO: Adapt the release URL convention for protoc-gen-doc
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${version}_${os}_${arch}.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
@@ -59,7 +60,7 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
-		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+		cp -r "$ASDF_DOWNLOAD_PATH"/protoc-gen-doc/protoc-gen-doc "$install_path"
 
 		# TODO: Assert protoc-gen-doc executable exists.
 		local tool_cmd
